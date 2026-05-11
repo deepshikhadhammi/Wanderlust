@@ -1,0 +1,83 @@
+<% layout("/layouts/boilerplate") -%>
+
+<style>
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter{
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+}
+
+.filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.filter p{
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.listing-link{
+    text-decoration: none;
+    color: black;
+}
+
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+</style>
+
+<div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 mt-5">
+
+    <% for(let listing of allListings){ %>
+
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+
+            <div class="card col">
+
+                <img 
+                    src="<%= listing.image.url %>" 
+                    class="card-img-top" 
+                    alt="listing_image"
+                    style="height: 20rem;"
+                >
+
+                <div class="card-img-overlay"></div>
+
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><%= listing.title %></b>
+                        <br>
+                        $ <%= listing.price.toLocaleString("en-CA") %> / night
+                    </p>
+                </div>
+
+            </div>
+
+        </a>
+
+    <% } %>
+
+</div>
